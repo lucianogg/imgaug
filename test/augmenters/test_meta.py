@@ -2942,7 +2942,7 @@ class TestAugmenter_augment_batches(unittest.TestCase):
         ]
 
         nb_iterations = 100
-        image = ia.quokka(size=(64, 64))
+        image = ia.data.quokka(size=(64, 64))
         batches = [ia.Batch(images=[np.copy(image)],
                             keypoints=[keypoints[0].deepcopy()])
                    for _ in sm.xrange(nb_iterations)]
@@ -4117,7 +4117,7 @@ class TestAugmenter_augment(unittest.TestCase):
 
     def test_image(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
 
         image_aug = aug.augment(image=image)
 
@@ -4126,7 +4126,7 @@ class TestAugmenter_augment(unittest.TestCase):
 
     def test_images_list(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
 
         images_aug = aug.augment(images=[image])
 
@@ -4135,8 +4135,8 @@ class TestAugmenter_augment(unittest.TestCase):
 
     def test_images_and_heatmaps(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
-        heatmaps = ia.quokka_heatmap((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
+        heatmaps = ia.data.quokka_heatmap((128, 128), extract="square")
 
         images_aug, heatmaps_aug = aug.augment(images=[image],
                                                heatmaps=[heatmaps])
@@ -4146,8 +4146,8 @@ class TestAugmenter_augment(unittest.TestCase):
 
     def test_images_and_segmentation_maps(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
-        segmaps = ia.quokka_segmentation_map((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
+        segmaps = ia.data.quokka_segmentation_map((128, 128), extract="square")
 
         images_aug, segmaps_aug = aug.augment(images=[image],
                                               segmentation_maps=[segmaps])
@@ -4156,8 +4156,8 @@ class TestAugmenter_augment(unittest.TestCase):
 
     def test_images_and_keypoints(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
-        keypoints = ia.quokka_keypoints((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
+        keypoints = ia.data.quokka_keypoints((128, 128), extract="square")
 
         images_aug, keypoints_aug = aug.augment(images=[image],
                                                 keypoints=[keypoints])
@@ -4167,8 +4167,8 @@ class TestAugmenter_augment(unittest.TestCase):
 
     def test_images_and_polygons(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
-        polygons = ia.quokka_polygons((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
+        polygons = ia.data.quokka_polygons((128, 128), extract="square")
 
         images_aug, polygons_aug = aug.augment(images=[image],
                                                polygons=[polygons])
@@ -4178,8 +4178,8 @@ class TestAugmenter_augment(unittest.TestCase):
 
     def test_images_and_line_strings(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
-        psoi = ia.quokka_polygons((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
+        psoi = ia.data.quokka_polygons((128, 128), extract="square")
         lsoi = ia.LineStringsOnImage([
             psoi.polygons[0].to_line_string(closed=False)
         ], shape=psoi.shape)
@@ -4192,8 +4192,8 @@ class TestAugmenter_augment(unittest.TestCase):
 
     def test_images_and_bounding_boxes(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
-        bbs = ia.quokka_bounding_boxes((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
+        bbs = ia.data.quokka_bounding_boxes((128, 128), extract="square")
 
         images_aug, bbs_aug = aug.augment(images=[image], bounding_boxes=[bbs])
 
@@ -4202,7 +4202,7 @@ class TestAugmenter_augment(unittest.TestCase):
 
     def test_image_return_batch(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
 
         batch = aug.augment(image=image, return_batch=True)
 
@@ -4211,8 +4211,8 @@ class TestAugmenter_augment(unittest.TestCase):
 
     def test_images_and_heatmaps_return_batch(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
-        heatmaps = ia.quokka_heatmap((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
+        heatmaps = ia.data.quokka_heatmap((128, 128), extract="square")
 
         batch = aug.augment(images=[image], heatmaps=[heatmaps],
                             return_batch=True)
@@ -4224,8 +4224,8 @@ class TestAugmenter_augment(unittest.TestCase):
 
     def test_images_and_segmentation_maps_return_batch(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
-        segmaps = ia.quokka_segmentation_map((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
+        segmaps = ia.data.quokka_segmentation_map((128, 128), extract="square")
 
         batch = aug.augment(images=[image], segmentation_maps=[segmaps],
                             return_batch=True)
@@ -4237,8 +4237,8 @@ class TestAugmenter_augment(unittest.TestCase):
 
     def test_images_and_keypoints_return_batch(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
-        keypoints = ia.quokka_keypoints((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
+        keypoints = ia.data.quokka_keypoints((128, 128), extract="square")
 
         batch = aug.augment(images=[image], keypoints=[keypoints],
                             return_batch=True)
@@ -4250,8 +4250,8 @@ class TestAugmenter_augment(unittest.TestCase):
 
     def test_images_and_polygons_return_batch(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
-        polygons = ia.quokka_polygons((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
+        polygons = ia.data.quokka_polygons((128, 128), extract="square")
 
         batch = aug.augment(images=[image], polygons=[polygons],
                             return_batch=True)
@@ -4263,8 +4263,8 @@ class TestAugmenter_augment(unittest.TestCase):
 
     def test_images_and_line_strings_return_batch(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
-        psoi = ia.quokka_polygons((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
+        psoi = ia.data.quokka_polygons((128, 128), extract="square")
         lsoi = ia.LineStringsOnImage([
             psoi.polygons[0].to_line_string(closed=False)
         ], shape=psoi.shape)
@@ -4279,8 +4279,8 @@ class TestAugmenter_augment(unittest.TestCase):
 
     def test_images_and_bounding_boxes_return_batch(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
-        bbs = ia.quokka_bounding_boxes((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
+        bbs = ia.data.quokka_bounding_boxes((128, 128), extract="square")
 
         batch = aug.augment(images=[image], bounding_boxes=[bbs],
                             return_batch=True)
@@ -4292,9 +4292,9 @@ class TestAugmenter_augment(unittest.TestCase):
 
     def test_non_image_data(self):
         aug = iaa.Identity()
-        segmaps = ia.quokka_segmentation_map((128, 128), extract="square")
-        keypoints = ia.quokka_keypoints((128, 128), extract="square")
-        polygons = ia.quokka_polygons((128, 128), extract="square")
+        segmaps = ia.data.quokka_segmentation_map((128, 128), extract="square")
+        keypoints = ia.data.quokka_keypoints((128, 128), extract="square")
+        polygons = ia.data.quokka_polygons((128, 128), extract="square")
 
         batch = aug.augment(segmentation_maps=[segmaps], keypoints=[keypoints],
                             polygons=[polygons], return_batch=True)
@@ -4308,9 +4308,9 @@ class TestAugmenter_augment(unittest.TestCase):
 
     def test_non_image_data_unexpected_args_order(self):
         aug = iaa.Identity()
-        segmaps = ia.quokka_segmentation_map((128, 128), extract="square")
-        keypoints = ia.quokka_keypoints((128, 128), extract="square")
-        polygons = ia.quokka_polygons((128, 128), extract="square")
+        segmaps = ia.data.quokka_segmentation_map((128, 128), extract="square")
+        keypoints = ia.data.quokka_keypoints((128, 128), extract="square")
+        polygons = ia.data.quokka_polygons((128, 128), extract="square")
 
         batch = aug.augment(polygons=[polygons], segmentation_maps=[segmaps],
                             keypoints=[keypoints], return_batch=True)
@@ -4471,8 +4471,8 @@ class TestAugmenter_augment(unittest.TestCase):
                      "Behaviour is only supported in python 3.6+")
     def test_py_gte_36_two_outputs_none_of_them_images(self):
         aug = iaa.Identity()
-        keypoints = ia.quokka_keypoints((128, 128), extract="square")
-        polygons = ia.quokka_polygons((128, 128), extract="square")
+        keypoints = ia.data.quokka_keypoints((128, 128), extract="square")
+        polygons = ia.data.quokka_polygons((128, 128), extract="square")
 
         keypoints_aug, polygons_aug = aug.augment(keypoints=[keypoints],
                                                   polygons=[polygons])
@@ -4484,8 +4484,8 @@ class TestAugmenter_augment(unittest.TestCase):
                      "Behaviour is only supported in python 3.6+")
     def test_py_gte_36_two_outputs_none_of_them_images_inverted(self):
         aug = iaa.Identity()
-        keypoints = ia.quokka_keypoints((128, 128), extract="square")
-        polygons = ia.quokka_polygons((128, 128), extract="square")
+        keypoints = ia.data.quokka_keypoints((128, 128), extract="square")
+        polygons = ia.data.quokka_polygons((128, 128), extract="square")
 
         polygons_aug, keypoints_aug = aug.augment(polygons=[polygons],
                                                   keypoints=[keypoints])
@@ -4497,8 +4497,8 @@ class TestAugmenter_augment(unittest.TestCase):
                      "Behaviour is only supported in python 3.6+")
     def test_py_gte_36_two_outputs_inverted_order_heatmaps(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
-        heatmaps = ia.quokka_heatmap((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
+        heatmaps = ia.data.quokka_heatmap((128, 128), extract="square")
 
         heatmaps_aug, images_aug = aug.augment(heatmaps=[heatmaps],
                                                images=[image])
@@ -4509,8 +4509,8 @@ class TestAugmenter_augment(unittest.TestCase):
                      "Behaviour is only supported in python 3.6+")
     def test_py_gte_36_two_outputs_inverted_order_segmaps(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
-        segmaps = ia.quokka_segmentation_map((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
+        segmaps = ia.data.quokka_segmentation_map((128, 128), extract="square")
 
         segmaps_aug, images_aug = aug.augment(segmentation_maps=[segmaps],
                                               images=[image])
@@ -4522,8 +4522,8 @@ class TestAugmenter_augment(unittest.TestCase):
                      "Behaviour is only supported in python 3.6+")
     def test_py_gte_36_two_outputs_inverted_order_keypoints(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
-        keypoints = ia.quokka_keypoints((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
+        keypoints = ia.data.quokka_keypoints((128, 128), extract="square")
 
         keypoints_aug, images_aug = aug.augment(keypoints=[keypoints],
                                                 images=[image])
@@ -4535,8 +4535,8 @@ class TestAugmenter_augment(unittest.TestCase):
                      "Behaviour is only supported in python 3.6+")
     def test_py_gte_36_two_outputs_inverted_order_bbs(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
-        bbs = ia.quokka_bounding_boxes((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
+        bbs = ia.data.quokka_bounding_boxes((128, 128), extract="square")
 
         bbs_aug, images_aug = aug.augment(bounding_boxes=[bbs],
                                           images=[image])
@@ -4548,8 +4548,8 @@ class TestAugmenter_augment(unittest.TestCase):
                      "Behaviour is only supported in python 3.6+")
     def test_py_gte_36_two_outputs_inverted_order_polygons(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
-        polygons = ia.quokka_polygons((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
+        polygons = ia.data.quokka_polygons((128, 128), extract="square")
 
         polygons_aug, images_aug = aug.augment(polygons=[polygons],
                                                images=[image])
@@ -4561,8 +4561,8 @@ class TestAugmenter_augment(unittest.TestCase):
                      "Behaviour is only supported in python 3.6+")
     def test_py_gte_36_two_outputs_inverted_order_line_strings(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
-        psoi = ia.quokka_polygons((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
+        psoi = ia.data.quokka_polygons((128, 128), extract="square")
         lsoi = ia.LineStringsOnImage([
             psoi.polygons[0].to_line_string(closed=False)
         ], shape=psoi.shape)
@@ -4577,9 +4577,9 @@ class TestAugmenter_augment(unittest.TestCase):
                      "Behaviour is only supported in python 3.6+")
     def test_py_gte_36_three_inputs_expected_order(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
-        heatmaps = ia.quokka_heatmap((128, 128), extract="square")
-        segmaps = ia.quokka_segmentation_map((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
+        heatmaps = ia.data.quokka_heatmap((128, 128), extract="square")
+        segmaps = ia.data.quokka_segmentation_map((128, 128), extract="square")
 
         images_aug, heatmaps_aug, segmaps_aug = aug.augment(
             images=[image],
@@ -4594,9 +4594,9 @@ class TestAugmenter_augment(unittest.TestCase):
                      "Behaviour is only supported in python 3.6+")
     def test_py_gte_36_three_inputs_expected_order2(self):
         aug = iaa.Identity()
-        segmaps = ia.quokka_segmentation_map((128, 128), extract="square")
-        keypoints = ia.quokka_keypoints((128, 128), extract="square")
-        polygons = ia.quokka_polygons((128, 128), extract="square")
+        segmaps = ia.data.quokka_segmentation_map((128, 128), extract="square")
+        keypoints = ia.data.quokka_keypoints((128, 128), extract="square")
+        polygons = ia.data.quokka_polygons((128, 128), extract="square")
 
         segmaps_aug, keypoints_aug, polygons_aug = aug.augment(
             segmentation_maps=[segmaps],
@@ -4611,9 +4611,9 @@ class TestAugmenter_augment(unittest.TestCase):
                      "Behaviour is only supported in python 3.6+")
     def test_py_gte_36_three_inputs_inverted_order(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
-        heatmaps = ia.quokka_heatmap((128, 128), extract="square")
-        segmaps = ia.quokka_segmentation_map((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
+        heatmaps = ia.data.quokka_heatmap((128, 128), extract="square")
+        segmaps = ia.data.quokka_segmentation_map((128, 128), extract="square")
 
         segmaps_aug, heatmaps_aug, images_aug = aug.augment(
             segmentation_maps=[segmaps],
@@ -4628,9 +4628,9 @@ class TestAugmenter_augment(unittest.TestCase):
                      "Behaviour is only supported in python 3.6+")
     def test_py_gte_36_three_inputs_inverted_order2(self):
         aug = iaa.Identity()
-        segmaps = ia.quokka_segmentation_map((128, 128), extract="square")
-        keypoints = ia.quokka_keypoints((128, 128), extract="square")
-        polygons = ia.quokka_polygons((128, 128), extract="square")
+        segmaps = ia.data.quokka_segmentation_map((128, 128), extract="square")
+        keypoints = ia.data.quokka_keypoints((128, 128), extract="square")
+        polygons = ia.data.quokka_polygons((128, 128), extract="square")
 
         polygons_aug, keypoints_aug, segmaps_aug = aug.augment(
             polygons=[polygons],
@@ -4645,12 +4645,12 @@ class TestAugmenter_augment(unittest.TestCase):
                      "Behaviour is only supported in python 3.6+")
     def test_py_gte_36_all_inputs_expected_order(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
-        heatmaps = ia.quokka_heatmap((128, 128), extract="square")
-        segmaps = ia.quokka_segmentation_map((128, 128), extract="square")
-        keypoints = ia.quokka_keypoints((128, 128), extract="square")
-        bbs = ia.quokka_bounding_boxes((128, 128), extract="square")
-        polygons = ia.quokka_polygons((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
+        heatmaps = ia.data.quokka_heatmap((128, 128), extract="square")
+        segmaps = ia.data.quokka_segmentation_map((128, 128), extract="square")
+        keypoints = ia.data.quokka_keypoints((128, 128), extract="square")
+        bbs = ia.data.quokka_bounding_boxes((128, 128), extract="square")
+        polygons = ia.data.quokka_polygons((128, 128), extract="square")
         lsoi = ia.LineStringsOnImage([
             polygons.polygons[0].to_line_string(closed=False)
         ], shape=polygons.shape)
@@ -4677,12 +4677,12 @@ class TestAugmenter_augment(unittest.TestCase):
                      "Behaviour is only supported in python 3.6+")
     def test_py_gte_36_all_inputs_inverted_order(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
-        heatmaps = ia.quokka_heatmap((128, 128), extract="square")
-        segmaps = ia.quokka_segmentation_map((128, 128), extract="square")
-        keypoints = ia.quokka_keypoints((128, 128), extract="square")
-        bbs = ia.quokka_bounding_boxes((128, 128), extract="square")
-        polygons = ia.quokka_polygons((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
+        heatmaps = ia.data.quokka_heatmap((128, 128), extract="square")
+        segmaps = ia.data.quokka_segmentation_map((128, 128), extract="square")
+        keypoints = ia.data.quokka_keypoints((128, 128), extract="square")
+        bbs = ia.data.quokka_bounding_boxes((128, 128), extract="square")
+        polygons = ia.data.quokka_polygons((128, 128), extract="square")
         lsoi = ia.LineStringsOnImage([
             polygons.polygons[0].to_line_string(closed=False)
         ], shape=polygons.shape)
@@ -4709,8 +4709,8 @@ class TestAugmenter_augment(unittest.TestCase):
                      "Test checks behaviour for python <=3.5")
     def test_py_lte_35_calls_without_images_fail(self):
         aug = iaa.Identity()
-        keypoints = ia.quokka_keypoints((128, 128), extract="square")
-        polygons = ia.quokka_polygons((128, 128), extract="square")
+        keypoints = ia.data.quokka_keypoints((128, 128), extract="square")
+        polygons = ia.data.quokka_polygons((128, 128), extract="square")
 
         got_exception = False
         try:
@@ -4725,9 +4725,9 @@ class TestAugmenter_augment(unittest.TestCase):
                      "Test checks behaviour for python <=3.5")
     def test_py_lte_35_calls_with_more_than_three_args_fail(self):
         aug = iaa.Identity()
-        image = ia.quokka((128, 128), extract="square")
-        heatmaps = ia.quokka_heatmap((128, 128), extract="square")
-        segmaps = ia.quokka_segmentation_map((128, 128), extract="square")
+        image = ia.data.quokka((128, 128), extract="square")
+        heatmaps = ia.data.quokka_heatmap((128, 128), extract="square")
+        segmaps = ia.data.quokka_segmentation_map((128, 128), extract="square")
 
         got_exception = False
         try:
@@ -4744,8 +4744,8 @@ class TestAugmenter___call__(unittest.TestCase):
         reseed()
 
     def test_with_two_augmentables(self):
-        image = ia.quokka(size=(128, 128), extract="square")
-        heatmaps = ia.quokka_heatmap(size=(128, 128), extract="square")
+        image = ia.data.quokka(size=(128, 128), extract="square")
+        heatmaps = ia.data.quokka_heatmap(size=(128, 128), extract="square")
 
         images_aug, heatmaps_aug = iaa.Identity()(images=[image],
                                                   heatmaps=[heatmaps])
@@ -4977,7 +4977,7 @@ class TestAugmenter_copy_random_state(unittest.TestCase):
 
     @property
     def image(self):
-        return ia.quokka_square(size=(128, 128))
+        return ia.data.quokka_square(size=(128, 128))
 
     @property
     def images(self):

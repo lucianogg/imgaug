@@ -28,11 +28,11 @@ def test_determinism():
     reseed()
 
     images = [
-        ia.quokka(size=(128, 128)),
-        ia.quokka(size=(64, 64)),
+        ia.data.quokka(size=(128, 128)),
+        ia.data.quokka(size=(64, 64)),
         ia.imresize_single_image(skimage.data.astronaut(), (128, 256))
     ]
-    images.extend([ia.quokka(size=(16, 16))] * 20)
+    images.extend([ia.data.quokka(size=(16, 16))] * 20)
 
     keypoints = [
         ia.KeypointsOnImage([
